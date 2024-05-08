@@ -27,7 +27,7 @@
 		"^@/@types",
 		"^../(.*)$",
 		"^./(.*)$",
-		"(.scss)$"
+		"(.css)$"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,

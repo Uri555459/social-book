@@ -1,5 +1,13 @@
+import type { FC } from 'react'
+
+import { NewPost } from '@/components'
+
 import './App.css'
 
-export const App = () => {
-	return <>klsdjflkj</>
+export const App: FC = () => {
+	return (
+		<div className='container'>
+			<NewPost />
+		</div>
+	)
 }

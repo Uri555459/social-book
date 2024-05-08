@@ -1,0 +1,10 @@
+.textarea {
+	font-family: var(--font-family);
+	font-size: var(--font-big);
+	color: var(--color-black);
+	background-color: var(--color-white);
+	border: var(--border-1);
+	border-radius: var(--radius);
+	padding: 10px;
+	height: 51px;
+}
