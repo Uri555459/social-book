@@ -1,10 +1,15 @@
-import type { FormEvent } from 'react'
+import cn from 'clsx'
+import type { FC, FormEvent } from 'react'
 
 import { Button, TextField } from '@/components'
 
+import { IClassName } from '@/@types/className.interface'
+
 import styles from './NewPost.module.css'
 
-export const NewPost = () => {
+interface INewPostProps extends IClassName {}
+
+export const NewPost: FC<INewPostProps> = ({ className }) => {
 	const submitHandler = (event: FormEvent) => {
 		event.preventDefault()
 	}
@@ -12,7 +17,7 @@ export const NewPost = () => {
 	return (
 		<form
 			onSubmit={submitHandler}
-			className={styles.form}
+			className={cn(styles.form, className)}
 		>
 			<TextField placeholder='Новый пост ...' />
 			<Button>Добавить</Button>

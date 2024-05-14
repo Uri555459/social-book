@@ -1,0 +1,28 @@
+.buttonGroup {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	border-top: var(--border-1);
+	padding-top: 15px;
+
+	button {
+		font-size: var(--font-small);
+	}
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+
+	p {
+		font-size: var(--font-small);
+	}
+}
+
+.right {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}

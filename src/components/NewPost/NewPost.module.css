@@ -1,4 +1,17 @@
 .form {
 	display: flex;
 	gap: 25px;
+	margin-bottom: 60px;
+	padding: 20px;
+	border: var(--border-2);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+	background-color: var(--color-white);
+}
+
+@media (max-width: 500px) {
+	.form {
+		display: block;
+		text-align: center;
+	}
 }

@@ -1,0 +1,12 @@
+.post {
+	padding: 15px 25px;
+	border: var(--border-2);
+	border-radius: var(--radius);
+	margin-bottom: 40px;
+	box-shadow: var(--shadow);
+	background-color: var(--color-white);
+}
+
+.content {
+	margin: 0;
+}
