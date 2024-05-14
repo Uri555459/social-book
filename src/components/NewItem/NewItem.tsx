@@ -5,11 +5,16 @@ import { Button, TextField } from '@/components'
 
 import { IClassName } from '@/@types/className.interface'
 
-import styles from './NewPost.module.css'
+import styles from './NewItem.module.css'
 
-interface INewPostProps extends IClassName {}
+interface INewItemProps extends IClassName {
+	placeholder?: string
+}
 
-export const NewPost: FC<INewPostProps> = ({ className }) => {
+export const NewItem: FC<INewItemProps> = ({
+	className,
+	placeholder = 'Новый пост ...'
+}) => {
 	const submitHandler = (event: FormEvent) => {
 		event.preventDefault()
 	}
@@ -19,7 +24,7 @@ export const NewPost: FC<INewPostProps> = ({ className }) => {
 			onSubmit={submitHandler}
 			className={cn(styles.form, className)}
 		>
-			<TextField placeholder='Новый пост ...' />
+			<TextField placeholder={placeholder} />
 			<Button>Добавить</Button>
 		</form>
 	)

@@ -1,6 +1,7 @@
 export { App } from './App/App'
-export { NewPost } from './NewPost/NewPost'
+export { NewItem } from './NewItem/NewItem'
 export { TextField } from './TextField/TextField'
 export { Button } from './Button/Button'
 export { Post } from './Post/Post'
 export { ButtonGroup } from './ButtonGroup/ButtonGroup'
+export { CommentsBlock } from './CommentsBlock/CommentsBlock'

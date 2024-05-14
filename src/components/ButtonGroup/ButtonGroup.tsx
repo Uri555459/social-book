@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { FC } from 'react'
 
-import { Button } from '@/components'
+import { Button, CommentsBlock } from '@/components'
 
 import styles from './ButtonGroup.module.css'
 
@@ -11,7 +11,11 @@ export const ButtonGroup: FC = () => {
 		setOpen(!isOpen)
 	}
 	return (
-		<div className={styles.buttonGroup}>
+		<div
+			style={{ display: isOpen ? 'block' : 'flex' }}
+			className={styles.buttonGroup}
+		>
+			{isOpen && <CommentsBlock />}
 			<div className={styles.left}>
 				<Button onClick={openCommentsHandler}>
 					{!isOpen ? 'Комментарии' : 'Спрятать'}
