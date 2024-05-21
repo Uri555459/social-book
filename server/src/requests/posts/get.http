@@ -1,0 +1,23 @@
+GET {{hostname}}/posts
+###
+
+GET {{hostname}}/posts/664c8ea4113d747f94596130
+###
+
+
+POST {{hostname}}/posts
+
+{
+	"text": "Create post"
+}
+###
+
+PUT {{hostname}}/posts/664c911c95df6f6c7a8575e2
+
+{
+	"text": "Update post 1"
+}
+
+###
+
+DELETE {{hostname}}/posts/664c911c95df6f6c7a8575e2
