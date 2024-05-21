@@ -1,9 +1,10 @@
 export interface IPost {
-	id: number | null
-	title: string
+	message: string
+	_id: string
+	text: string
 }
 
 export interface IComment {
-	id: number | null
+	_id: string
 	text: string
 }
