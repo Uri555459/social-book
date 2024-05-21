@@ -32,7 +32,6 @@ const initialState: IPostState = {
 
 export const counterSlice = createSlice({
 	name: 'posts',
-	// `createSlice` will infer the state type from the `initialState` argument
 	initialState,
 	reducers: {
 		// add: (state, action: PayloadAction<IPost>) => {
@@ -45,7 +44,6 @@ export const counterSlice = createSlice({
 
 		builder.addCase(fetchPosts.fulfilled, (state, action) => {
 			state.posts = action.payload
-			// console.log(action.payload)
 		})
 
 		// builder.addCase(fetchPosts.rejected, (state, action) => {})
@@ -54,7 +52,6 @@ export const counterSlice = createSlice({
 
 // export const { add } = counterSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectPosts = (state: RootState) => state.posts
+export const selectPosts = (state: RootState) => state.posts.posts
 
 export const postsReducer = counterSlice.reducer

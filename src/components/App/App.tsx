@@ -1,4 +1,5 @@
 import { type FC, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 import { NewItem, Post } from '@/components'
 
@@ -9,13 +10,15 @@ import './App.css'
 
 export const App: FC = () => {
 	const dispatch = useAppDispatch()
-	const { posts } = useAppSelector(selectPosts)
+	const posts = useAppSelector(selectPosts)
 
 	useEffect(() => {
 		dispatch(fetchPosts())
 	}, [dispatch])
 
-	console.log(posts)
+	if (posts.message) {
+		toast.success(posts.message)
+	}
 
 	return (
 		<div className='container'>
