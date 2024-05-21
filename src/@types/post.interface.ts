@@ -1,7 +1,10 @@
 export interface IPost {
-	message: string
 	_id: string
 	text: string
+}
+
+export interface IMessage {
+	message: string
 }
 
 export interface IComment {

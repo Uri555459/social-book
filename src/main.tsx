@@ -15,10 +15,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<App />
+			<ToastContainer
+				theme='dark'
+				draggable={false}
+			/>
 		</Provider>
-		<ToastContainer
-			theme='dark'
-			draggable={false}
-		/>
 	</React.StrictMode>
 )

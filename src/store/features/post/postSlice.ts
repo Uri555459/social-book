@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import type { RootState } from '@/store/store'
 
-import { IPost } from '@/@types/post.interface'
+import type { IMessage, IPost } from '@/@types/post.interface'
 
 export const fetchPosts = createAsyncThunk<IPost>(
 	'posts/fetchPosts',
@@ -18,20 +18,19 @@ export const fetchPosts = createAsyncThunk<IPost>(
 
 // Define a type for the slice state
 interface IPostState {
-	posts: IPost
+	message: IMessage
+	posts: IPost[]
 }
 
 // Define the initial state using that type
 const initialState: IPostState = {
-	posts: {
-		message: '',
-		text: '',
-		_id: ''
-	}
+	message: '',
+	posts: [{ _id: '', text: '' }]
 }
 
 export const counterSlice = createSlice({
 	name: 'posts',
+	// `createSlice` will infer the state type from the `initialState` argument
 	initialState,
 	reducers: {
 		// add: (state, action: PayloadAction<IPost>) => {
@@ -44,6 +43,8 @@ export const counterSlice = createSlice({
 
 		builder.addCase(fetchPosts.fulfilled, (state, action) => {
 			state.posts = action.payload
+			state.message = action.payload.message
+			// console.log(action.payload)
 		})
 
 		// builder.addCase(fetchPosts.rejected, (state, action) => {})
@@ -52,6 +53,7 @@ export const counterSlice = createSlice({
 
 // export const { add } = counterSlice.actions
 
-export const selectPosts = (state: RootState) => state.posts.posts
+// Other code such as selectors can use the imported `RootState` type
+export const selectPosts = (state: RootState) => state.posts
 
 export const postsReducer = counterSlice.reducer

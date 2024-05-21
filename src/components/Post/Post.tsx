@@ -3,19 +3,18 @@ import type { FC } from 'react'
 
 import { ButtonGroup } from '@/components'
 
-import { IClassName } from '@/@types/className.interface'
+import type { IPost } from '@/@types/post.interface'
 
 import styles from './Post.module.css'
 
-interface IPostProps extends IClassName {}
+interface IPostProps extends IPost {
+	className?: string
+}
 
-export const Post: FC<IPostProps> = ({ className }) => {
+export const Post: FC<IPostProps> = ({ className, text }) => {
 	return (
 		<article className={cn(styles.post, className)}>
-			<p className={styles.content}>
-				Сегодня было замечательное предложение пойти поужинать этим вечером.
-				Главное, чтобы погода была преимущественно теплой.
-			</p>
+			<p className={styles.content}>{text}</p>
 			<ButtonGroup />
 		</article>
 	)
