@@ -7,7 +7,7 @@ import type { IPost } from '@/@types/post.interface'
 
 import styles from './Post.module.css'
 
-interface IPostProps extends IPost {
+interface IPostProps extends Omit<IPost, '_id'> {
 	className?: string
 }
 

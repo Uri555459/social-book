@@ -4,10 +4,6 @@ const ObjectId = Schema.ObjectId
 
 const Post = new Schema(
 	{
-		author: {
-			type: ObjectId,
-			required: true
-		},
 		text: {
 			type: String,
 			required: true

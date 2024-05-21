@@ -1,10 +1,12 @@
+export interface IData {
+	posts: IPost[]
+	message: string
+}
+
 export interface IPost {
 	_id: string
 	text: string
-}
-
-export interface IMessage {
-	message: string
+	__v?: number
 }
 
 export interface IComment {
