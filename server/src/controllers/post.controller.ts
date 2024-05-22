@@ -5,7 +5,7 @@ import type { IPost } from '../@types/IPost.interface'
 class PostController {
 	async getAll(req: Request, res: Response) {
 		try {
-			const posts = await PostModel.find()
+			const posts: IPost[] = await PostModel.find()
 
 			if (!posts.length) {
 				res.status(200).json({ message: 'Список постов пуст' })

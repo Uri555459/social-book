@@ -1,4 +1,4 @@
-export interface IData {
+export interface IPostsData {
 	posts: IPost[]
 	message: string
 }

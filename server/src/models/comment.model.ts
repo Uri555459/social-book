@@ -15,4 +15,4 @@ const Comment = new Schema(
 	{ timestamps: true }
 )
 
-export const PostModel = mongoose.model('comments', Comment)
+export const CommentModel = mongoose.model('comments', Comment)

@@ -1,16 +1,14 @@
-import { type FC, useEffect } from 'react'
+import { useEffect } from 'react'
+import type { FC } from 'react'
 import { toast } from 'react-toastify'
 
 import { NewItem, Post } from '@/components'
 
-import {
-	fetchPosts,
-	selectMessage,
-	selectPosts
-} from '@/store/features/post/postSlice'
-import { useAppDispatch, useAppSelector } from '@/store/hooks/redux.hook'
+import { fetchPostsData } from '@/redux/features/post/asyncActions'
+import { selectMessage, selectPosts } from '@/redux/features/post/selector'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/redux.hook'
 
-import { IPost } from '@/@types/post.interface'
+import type { IPost } from '@/@types/post.interface'
 
 import './App.css'
 
@@ -20,7 +18,7 @@ export const App: FC = () => {
 	const message = useAppSelector(selectMessage)
 
 	useEffect(() => {
-		dispatch(fetchPosts())
+		dispatch(fetchPostsData())
 	}, [dispatch])
 
 	if (posts.length > 0) {
@@ -30,12 +28,14 @@ export const App: FC = () => {
 	return (
 		<div className='container'>
 			<NewItem />
-			{posts.map((post: IPost) => (
-				<Post
-					key={post._id}
-					text={post.text}
-				/>
-			))}
+			{posts
+				.map((post: IPost) => (
+					<Post
+						key={post._id}
+						text={post.text}
+					/>
+				))
+				.reverse()}
 		</div>
 	)
 }

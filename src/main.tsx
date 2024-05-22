@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify'
 
 import { App } from '@/components'
 
-import { store } from '@/store'
+import { store } from '@/redux'
 
 import './index.css'
 
@@ -18,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			<ToastContainer
 				theme='dark'
 				draggable={false}
+				style={{ fontSize: '16px' }}
 			/>
 		</Provider>
 	</React.StrictMode>

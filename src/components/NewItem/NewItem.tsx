@@ -4,13 +4,13 @@ import { toast } from 'react-toastify'
 
 import { Button, TextField } from '@/components'
 
-import { fetchPosts } from '@/store/features/post/postSlice'
-import { useAppDispatch } from '@/store/hooks/redux.hook'
+import { fetchPostsData } from '@/redux/features/post/asyncActions'
+import { useAppDispatch } from '@/redux/hooks/redux.hook'
 
 import { fetchData } from '@/utils/axios.instance'
 
-import { IClassName } from '@/@types/className.interface'
-import { IData } from '@/@types/post.interface'
+import type { IClassName } from '@/@types/className.interface'
+import type { IPostsData } from '@/@types/post.interface'
 
 import styles from './NewItem.module.css'
 
@@ -27,9 +27,9 @@ export const NewItem: FC<INewItemProps> = ({
 
 	const submitHandler = async (event: FormEvent) => {
 		event.preventDefault()
-		const { data } = await fetchData.post<IData>('/posts', { text: value })
+		const { data } = await fetchData.post<IPostsData>('/posts', { text: value })
 		setValue('')
-		dispatch(fetchPosts())
+		dispatch(fetchPostsData())
 		toast.success(data.message)
 	}
 
