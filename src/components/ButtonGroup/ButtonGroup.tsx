@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FC } from 'react'
+import { createPortal } from 'react-dom'
 import { toast } from 'react-toastify'
 
 import { Button, CommentsBlock } from '@/components'
@@ -24,7 +25,8 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
 	}
 
 	const updatePost = async (id: string) => {
-		const { data } = await fetchData.put(`/${id}`)
+		const { data } = await fetchData.put(`/posts/${id}`)
+		console.log(data)
 	}
 	const deletePost = async (id: string) => {
 		const { data } = await fetchData.delete(`/posts/${id}`)
@@ -38,6 +40,10 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
 			style={{ display: isOpen ? 'block' : 'flex' }}
 			className={styles.buttonGroup}
 		>
+			{createPortal(
+				<p>This child is placed in the document body!!!dd.</p>,
+				document.body
+			)}
 			{isOpen && <CommentsBlock />}
 			<div className={styles.left}>
 				<Button onClick={openCommentsHandler}>
