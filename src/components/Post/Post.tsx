@@ -7,15 +7,15 @@ import type { IPost } from '@/@types/post.interface'
 
 import styles from './Post.module.css'
 
-interface IPostProps extends Omit<IPost, '_id'> {
+interface IPostProps extends IPost {
 	className?: string
 }
 
-export const Post: FC<IPostProps> = ({ className, text }) => {
+export const Post: FC<IPostProps> = ({ className, text, _id }) => {
 	return (
 		<article className={cn(styles.post, className)}>
 			<p className={styles.content}>{text}</p>
-			<ButtonGroup />
+			<ButtonGroup id={_id} />
 		</article>
 	)
 }

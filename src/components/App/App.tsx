@@ -32,6 +32,7 @@ export const App: FC = () => {
 				.map((post: IPost) => (
 					<Post
 						key={post._id}
+						_id={post._id}
 						text={post.text}
 					/>
 				))
