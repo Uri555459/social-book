@@ -5,7 +5,8 @@ const ObjectId = Schema.ObjectId
 const Comment = new Schema(
 	{
 		author: {
-			type: ObjectId
+			type: ObjectId,
+			ref: 'posts'
 		},
 		text: {
 			type: String,
