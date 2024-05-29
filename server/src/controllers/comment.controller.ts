@@ -1,11 +1,12 @@
 import type { Request, Response } from 'express'
 import { CommentModel } from '../models/comment.model'
-import { IComponent } from '../@types/IComment.interface'
+import { IComment } from '../@types/IComment.interface'
+import { PostModel } from '../models/post.model'
 
 class CommentController {
 	async getAll(req: Request, res: Response) {
 		try {
-			const comments: IComponent[] = await CommentModel.find()
+			const comments: IComment[] = await CommentModel.find()
 
 			if (!comments.length) {
 				res.status(200).json({ message: 'Список комментариев пуст' })
@@ -21,13 +22,21 @@ class CommentController {
 
 	async create(req: Request, res: Response) {
 		try {
-			const { text }: IComponent = req.body
+			const { text } = req.body
+			const { postId } = req.params
 
-			const post = new CommentModel({ text })
+			const comment = new CommentModel({
+				text
+			})
 
-			await post.save()
+			await comment.save()
 
-			res.status(201).json({ post, message: 'Комментарий успешно создан' })
+			await PostModel.updateOne(
+				{ _id: postId },
+				{ $push: { commentIds: comment._id } }
+			)
+
+			res.status(201).json({ comment, message: 'Комментарий успешно создан' })
 		} catch (error) {
 			res.status(500).json({ message: 'Ошибка при создании комментария' })
 			console.log(error, 'Ошибка при создании комментария'.white.bgRed.bold)
@@ -51,7 +60,7 @@ class CommentController {
 	async update(req: Request, res: Response) {
 		try {
 			const { id } = req.params
-			const { text }: IComponent = req.body
+			const { text }: IComment = req.body
 			const post = await CommentModel.findByIdAndUpdate(
 				id,
 				{ text },

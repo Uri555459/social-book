@@ -5,11 +5,12 @@ import morgan from 'morgan'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import { postRouter } from './routes/post.route'
+import { commentRouter } from './routes/comment.route'
 
 const server = express()
 
-if (process.env.NODE_ENV !== 'development') {
-	server.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+	server.use(morgan('tiny'))
 }
 
 server.use(cors())
@@ -17,6 +18,7 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
 server.use('/api/posts', postRouter)
+server.use('/api/comments', commentRouter)
 
 const start = async () => {
 	try {

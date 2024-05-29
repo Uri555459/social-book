@@ -1,13 +1,14 @@
 GET {{hostname}}/comments
 ###
 
-GET {{hostname}}/comments/664c8ea4113d747f94596130
+GET {{hostname}}/comments/6656f5c358108e8300609189
 ###
 
 
-POST {{hostname}}/comments
+POST {{hostname}}/comments/6656f5c358108e8300609189
 
 {
+	"commentIds": "6656f5c358108e8300609189"
 	"text": "Create comments"
 }
 ###

@@ -1,7 +1,7 @@
 GET {{hostname}}/posts
 ###
 
-GET {{hostname}}/posts/664c8ea4113d747f94596130
+GET {{hostname}}/posts/6656fa9b6ab180780046bddc
 ###
 
 
@@ -12,7 +12,7 @@ POST {{hostname}}/posts
 }
 ###
 
-PUT {{hostname}}/posts/664c911c95df6f6c7a8575e2
+PUT {{hostname}}/posts/6656fa9b6ab180780046bddc
 
 {
 	"text": "Update post 1"
@@ -20,4 +20,4 @@ PUT {{hostname}}/posts/664c911c95df6f6c7a8575e2
 
 ###
 
-DELETE {{hostname}}/posts/664c911c95df6f6c7a8575e2
+DELETE {{hostname}}/posts/6656fa9b6ab180780046bddc
