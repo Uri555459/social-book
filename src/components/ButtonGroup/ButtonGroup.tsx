@@ -1,22 +1,31 @@
-import { useState } from 'react'
-import type { FC } from 'react'
-import { createPortal } from 'react-dom'
-import { toast } from 'react-toastify'
+import { useState } from 'react';
+import type { FC } from 'react';
+import { createPortal } from 'react-dom';
+import { toast } from 'react-toastify';
 
-import { Button, CommentsBlock } from '@/components'
 
-import { fetchPostsData } from '@/redux/features/post/asyncActions'
-import { useAppDispatch } from '@/redux/hooks/redux.hook'
 
-import { fetchData } from '@/utils/axios.instance'
+import { Button, CommentsBlock } from '@/components';
 
-import styles from './ButtonGroup.module.css'
+
+
+import { fetchPostsData } from '@/redux/features/post/asyncActions';
+import { useAppDispatch } from '@/redux/hooks/redux.hook';
+
+
+
+import { fetchData } from '@/utils/axios.instance';
+
+
+
+import styles from './ButtonGroup.module.css';
+
 
 interface IButtonGroupProps {
-	id: string
+	postId: string
 }
 
-export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
+export const ButtonGroup: FC<IButtonGroupProps> = ({ postId }) => {
 	const [isOpen, setOpen] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
 
@@ -24,12 +33,12 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
 		setOpen(!isOpen)
 	}
 
-	const updatePost = async (id: string) => {
-		const { data } = await fetchData.put(`/posts/${id}`)
+	const updatePost = async (postId: string) => {
+		const { data } = await fetchData.put(`/posts/${postId}`)
 		console.log(data)
 	}
-	const deletePost = async (id: string) => {
-		const { data } = await fetchData.delete(`/posts/${id}`)
+	const deletePost = async (postId: string) => {
+		const { data } = await fetchData.delete(`/posts/${postId}`)
 		dispatch(fetchPostsData())
 
 		toast.success(`${data.message}`)
@@ -44,7 +53,7 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
 				<p>This child is placed in the document body!!!dd.</p>,
 				document.body
 			)}
-			{isOpen && <CommentsBlock />}
+			{isOpen && <CommentsBlock postId={postId} />}
 			<div className={styles.left}>
 				<Button onClick={openCommentsHandler}>
 					{!isOpen ? 'Комментарии' : 'Спрятать'}
@@ -53,9 +62,9 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ id }) => {
 			</div>
 			{!isOpen && (
 				<div className={styles.right}>
-					<Button onClick={() => updatePost(id)}>Изменить</Button>
+					<Button onClick={() => updatePost(postId)}>Изменить</Button>
 					<Button
-						onClick={() => deletePost(id)}
+						onClick={() => deletePost(postId)}
 						color='red'
 					>
 						Удалить

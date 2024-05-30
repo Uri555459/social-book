@@ -14,7 +14,7 @@ import './App.css'
 
 export const App: FC = () => {
 	const dispatch = useAppDispatch()
-	const posts = useAppSelector(selectPosts)
+	const posts = useAppSelector(selectPosts) || []
 	const message = useAppSelector(selectMessage)
 
 	useEffect(() => {

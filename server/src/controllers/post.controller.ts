@@ -8,7 +8,7 @@ class PostController {
 			const posts: IPost[] = await PostModel.find()
 
 			if (!posts.length) {
-				res.status(200).json({ message: 'Список постов пуст' })
+				return res.status(200).json({ message: 'Список постов пуст' })
 			}
 			res.status(200).json({ posts, message: 'Список постов получен' })
 		} catch (error) {
