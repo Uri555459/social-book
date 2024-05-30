@@ -4,7 +4,7 @@ GET {{hostname}}/posts
 GET {{hostname}}/posts/6656fa9b6ab180780046bddc
 ###
 
-
+ 
 POST {{hostname}}/posts
 
 {

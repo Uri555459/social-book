@@ -1,24 +1,23 @@
 GET {{hostname}}/comments
 ###
 
-GET {{hostname}}/comments/6656f5c358108e8300609189
+GET {{hostname}}/comments/6657025e57776e2ef8e742f8
 ###
 
 
-POST {{hostname}}/comments/6656f5c358108e8300609189
+POST {{hostname}}/comments/66581bde299a13710fbca376
 
 {
-	"commentIds": "6656f5c358108e8300609189"
 	"text": "Create comments"
 }
 ###
 
-PUT {{hostname}}/comments/664c911c95df6f6c7a8575e2
+PUT {{hostname}}/comments/665818c6bbcbd7f5bc6b41d1
 
 {
 	"text": "Update comments 1"
 }
-
+ 
 ###
 
-DELETE {{hostname}}/comments/664c911c95df6f6c7a8575e2
+DELETE {{hostname}}/comments/66581be6299a13710fbca37b/66581bde299a13710fbca376

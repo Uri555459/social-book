@@ -18,4 +18,4 @@ const Post = new Schema(
 	{ timestamps: true }
 )
 
-export const PostModel = mongoose.model('posts', Post)
+export const PostModel = mongoose.model('Posts', Post)

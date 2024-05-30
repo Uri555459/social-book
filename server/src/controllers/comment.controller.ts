@@ -1,7 +1,8 @@
 import type { Request, Response } from 'express'
 import { CommentModel } from '../models/comment.model'
-import { IComment } from '../@types/IComment.interface'
+import type { IComment } from '../@types/IComment.interface'
 import { PostModel } from '../models/post.model'
+import type { IPost } from '../@types/IPost.interface'
 
 class CommentController {
 	async getAll(req: Request, res: Response) {
@@ -29,12 +30,12 @@ class CommentController {
 				text
 			})
 
-			await comment.save()
-
 			await PostModel.updateOne(
 				{ _id: postId },
 				{ $push: { commentIds: comment._id } }
 			)
+
+			await comment.save()
 
 			res.status(201).json({ comment, message: 'Комментарий успешно создан' })
 		} catch (error) {
@@ -57,30 +58,63 @@ class CommentController {
 	// 	}
 	// }
 
-	async update(req: Request, res: Response) {
-		try {
-			const { id } = req.params
-			const { text }: IComment = req.body
-			const post = await CommentModel.findByIdAndUpdate(
-				id,
-				{ text },
-				{ new: true }
-			)
+	// async update(req: Request, res: Response) {
+	// 	try {
+	// 		const { id } = req.params
+	// 		const { text }: IComment = req.body
+	// 		const post = await CommentModel.findByIdAndUpdate(
+	// 			id,
+	// 			{ text },
+	// 			{ new: true }
+	// 		)
 
-			if (!post) {
-				res.status(404).json({ message: 'Ошибка обновления комментария' })
-			}
-			res.status(200).json({ post, message: 'Комментарий обновлен' })
-		} catch (error) {
-			res.status(500).json({ message: 'Ошибка при обновлении комментария' })
-			console.log(error, 'Ошибка при обновлении комментария'.white.bgRed.bold)
-		}
-	}
+	// 		if (!post) {
+	// 			res.status(404).json({ message: 'Ошибка обновления комментария' })
+	// 		}
+	// 		res.status(200).json({ post, message: 'Комментарий обновлен' })
+	// 	} catch (error) {
+	// 		res.status(500).json({ message: 'Ошибка при обновлении комментария' })
+	// 		console.log(error, 'Ошибка при обновлении комментария'.white.bgRed.bold)
+	// 	}
+	// }
 
 	async delete(req: Request, res: Response) {
 		try {
-			const { id } = req.params
-			await CommentModel.findByIdAndDelete(id)
+			const { id, postId } = req.params
+			const comment: IComment | null = await CommentModel.findByIdAndDelete(id)
+
+			if (comment === null) {
+				return res.status(404).json({
+					message: 'Такого комментария не существует'
+				})
+			}
+
+			try {
+				const post: IPost | null = await PostModel.findById({ _id: postId })
+
+				if (post === null) {
+					return res.status(404).json({
+						message: 'Такого поста не существует'
+					})
+				}
+
+				const commentIdsNew = post.commentIds.filter(id => id != comment._id)
+				console.log(commentIdsNew)
+
+				await PostModel.findByIdAndUpdate(
+					postId,
+					{ commentIds: commentIdsNew },
+					{ new: true }
+				)
+			} catch (error) {
+				res.status(500).json({
+					message: 'Ошибка при удалении ID комментария из массива поста'
+				})
+				console.log(
+					error,
+					'Ошибка при удалении ID комментария из массива поста'.white.bgRed.bold
+				)
+			}
 
 			res.status(200).json({ message: 'Комментарий удален' })
 		} catch (error) {
