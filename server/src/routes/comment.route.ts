@@ -6,6 +6,6 @@ export const commentRouter = Router()
 
 commentRouter.get('/', commentController.getAll)
 commentRouter.post('/:postId', commentController.create)
-// commentRouter.get('/:id', commentController.getOne)
+commentRouter.get('/:id', commentController.getOne)
 // commentRouter.put('/:id', commentController.update)
 commentRouter.delete('/:id/:postId', commentController.delete)

@@ -9,13 +9,23 @@ import styles from './Post.module.css'
 
 interface IPostProps extends IPost {
 	className?: string
+	commentIds: string[]
+	postId: string
 }
 
-export const Post: FC<IPostProps> = ({ className, text, _id }) => {
+export const Post: FC<IPostProps> = ({
+	className,
+	text,
+	commentIds,
+	postId
+}) => {
 	return (
 		<article className={cn(styles.post, className)}>
 			<p className={styles.content}>{text}</p>
-			<ButtonGroup id={_id} />
+			<ButtonGroup
+				commentIds={commentIds}
+				postId={postId}
+			/>
 		</article>
 	)
 }

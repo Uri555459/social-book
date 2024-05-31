@@ -1,19 +1,24 @@
 import cn from 'clsx'
+import { useEffect } from 'react'
 import type { FC } from 'react'
 
 import { Comment, NewComment } from '@/components'
 
-import { IClassName } from '@/@types/className.interface'
+import type { IClassName } from '@/@types/className.interface'
 
 import styles from './CommentsBlock.module.css'
 
 interface IComponentsBlockProps extends IClassName {
 	postId: string
+	commentIds: string[]
 }
 export const CommentsBlock: FC<IComponentsBlockProps> = ({
 	className,
-	postId
+	postId,
+	commentIds
 }) => {
+	useEffect(() => {}, [])
+
 	return (
 		<div className={cn(styles.commentsBlock, className)}>
 			<NewComment
@@ -21,7 +26,11 @@ export const CommentsBlock: FC<IComponentsBlockProps> = ({
 				className={styles.form}
 				placeholder='Новый комментарий ...'
 			/>
-			<Comment text={'lkdjfldddddddd dddddddd ddddddddd ddddddddddddddddkj'} />
+
+			{/* <Comment
+				commentId={commentId}
+				postId={postId}
+			/> */}
 		</div>
 	)
 }

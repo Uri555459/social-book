@@ -6,6 +6,7 @@ export interface IPostsData {
 export interface IPost {
 	_id: string
 	text: string
+	commentIds: string[]
 	__v?: number
 }
 

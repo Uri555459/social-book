@@ -1,6 +1,9 @@
 import type { FC } from 'react'
+import { toast } from 'react-toastify'
 
 import { Button } from '@/components'
+
+import { fetchData } from '@/utils/axios.instance'
 
 import styles from './Comment.module.css'
 
@@ -15,7 +18,17 @@ export const Comment: FC<ICommentProps> = ({
 	commentId,
 	postId
 }) => {
-	const removeComment = (commentId, postId) => {}
+	const removeComment = async (commentId: string, postId: string) => {
+		try {
+			const { data } = await fetchData.delete<{ message: string }>(
+				`/comments/${commentId}/${postId}`
+			)
+
+			toast.success(`${data.message}`)
+		} catch (error) {
+			toast.error(`Ошибка удаления комментария`)
+		}
+	}
 
 	return (
 		<div className={styles.item}>

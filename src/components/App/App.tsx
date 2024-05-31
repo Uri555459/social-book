@@ -28,15 +28,18 @@ export const App: FC = () => {
 	return (
 		<div className='container'>
 			<NewItem />
-			{posts
-				.map((post: IPost) => (
-					<Post
-						key={post._id}
-						_id={post._id}
-						text={post.text}
-					/>
-				))
-				.reverse()}
+			{posts.length > 0 &&
+				posts
+					.map((post: IPost) => (
+						<Post
+							commentIds={post.commentIds}
+							key={post._id}
+							text={post.text}
+							postId={post._id}
+							_id={post._id}
+						/>
+					))
+					.reverse()}
 		</div>
 	)
 }

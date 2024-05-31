@@ -9,12 +9,14 @@ interface IButtonProps extends ComponentProps<'button'> {
 	children: ReactNode
 	className?: string
 	color?: ButtonColor
+	onClick?: () => void
 }
 
 export const Button: FC<IButtonProps> = ({
 	children,
 	className,
 	color = 'blue',
+	onClick,
 	...props
 }) => {
 	return (
@@ -23,6 +25,7 @@ export const Button: FC<IButtonProps> = ({
 				[styles.blue]: color === 'blue',
 				[styles.red]: color === 'red'
 			})}
+			onClick={onClick}
 			{...props}
 		>
 			{children}

@@ -20,7 +20,8 @@ class PostController {
 	async getOne(req: Request, res: Response) {
 		try {
 			const { id } = req.params
-			const post = await PostModel.findById(id)
+			const post: IPost | null = await PostModel.findById(id)
+
 			if (!post) {
 				res.status(404).json({ message: 'Пост с таким ID не найдена' })
 			}

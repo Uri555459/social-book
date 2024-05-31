@@ -1,31 +1,23 @@
-import { useState } from 'react';
-import type { FC } from 'react';
-import { createPortal } from 'react-dom';
-import { toast } from 'react-toastify';
+import { useState } from 'react'
+import type { FC } from 'react'
+import { createPortal } from 'react-dom'
+import { toast } from 'react-toastify'
 
+import { Button, CommentsBlock } from '@/components'
 
+import { fetchPostsData } from '@/redux/features/post/asyncActions'
+import { useAppDispatch } from '@/redux/hooks/redux.hook'
 
-import { Button, CommentsBlock } from '@/components';
+import { fetchData } from '@/utils/axios.instance'
 
-
-
-import { fetchPostsData } from '@/redux/features/post/asyncActions';
-import { useAppDispatch } from '@/redux/hooks/redux.hook';
-
-
-
-import { fetchData } from '@/utils/axios.instance';
-
-
-
-import styles from './ButtonGroup.module.css';
-
+import styles from './ButtonGroup.module.css'
 
 interface IButtonGroupProps {
 	postId: string
+	commentIds: string[]
 }
 
-export const ButtonGroup: FC<IButtonGroupProps> = ({ postId }) => {
+export const ButtonGroup: FC<IButtonGroupProps> = ({ postId, commentIds }) => {
 	const [isOpen, setOpen] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
 
@@ -53,7 +45,12 @@ export const ButtonGroup: FC<IButtonGroupProps> = ({ postId }) => {
 				<p>This child is placed in the document body!!!dd.</p>,
 				document.body
 			)}
-			{isOpen && <CommentsBlock postId={postId} />}
+			{isOpen && (
+				<CommentsBlock
+					commentIds={commentIds}
+					postId={postId}
+				/>
+			)}
 			<div className={styles.left}>
 				<Button onClick={openCommentsHandler}>
 					{!isOpen ? 'Комментарии' : 'Спрятать'}

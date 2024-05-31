@@ -14,7 +14,7 @@ const initialState: IPostState = {
 	message: ''
 }
 
-export const counterSlice = createSlice({
+export const postSlice = createSlice({
 	name: 'posts',
 	initialState,
 	reducers: {
@@ -41,6 +41,6 @@ export const counterSlice = createSlice({
 	}
 })
 
-export const { add } = counterSlice.actions
+export const { add } = postSlice.actions
 
-export const postsReducer = counterSlice.reducer
+export const postsReducer = postSlice.reducer

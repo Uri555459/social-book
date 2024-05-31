@@ -44,39 +44,28 @@ class CommentController {
 		}
 	}
 
-	// async getOne(req: Request, res: Response) {
-	// 	try {
-	// 		const { id } = req.params
-	// 		const post = await CommentModel.findById(id)
-	// 		if (!post) {
-	// 			res.status(404).json({ message: 'Пост с таким ID не найдена' })
-	// 		}
-	// 		res.status(200).json({ post, message: 'Пост успешно получен' })
-	// 	} catch (error) {
-	// 		res.status(500).json({ message: 'Ошибка при получении поста по ID' })
-	// 		console.log(error, 'Ошибка при получении поста по ID'.white.bgRed.bold)
-	// 	}
-	// }
+	async getOne(req: Request, res: Response) {
+		try {
+			const { id } = req.params
+			const post = (await CommentModel.findById(id)) as IPost | null
+			console.log(JSON.stringify(post).white.bgGreen.bold)
 
-	// async update(req: Request, res: Response) {
-	// 	try {
-	// 		const { id } = req.params
-	// 		const { text }: IComment = req.body
-	// 		const post = await CommentModel.findByIdAndUpdate(
-	// 			id,
-	// 			{ text },
-	// 			{ new: true }
-	// 		)
-
-	// 		if (!post) {
-	// 			res.status(404).json({ message: 'Ошибка обновления комментария' })
-	// 		}
-	// 		res.status(200).json({ post, message: 'Комментарий обновлен' })
-	// 	} catch (error) {
-	// 		res.status(500).json({ message: 'Ошибка при обновлении комментария' })
-	// 		console.log(error, 'Ошибка при обновлении комментария'.white.bgRed.bold)
-	// 	}
-	// }
+			if (post === null) {
+				return res
+					.status(404)
+					.json({ message: 'Комментарий с таким ID не найден' })
+			}
+			res.status(200).json({ post, message: 'Комментарий успешно получен' })
+		} catch (error) {
+			res
+				.status(500)
+				.json({ message: 'Ошибка при получении комментария по ID' })
+			console.log(
+				error,
+				'Ошибка при получении комментария по ID'.white.bgRed.bold
+			)
+		}
+	}
 
 	async delete(req: Request, res: Response) {
 		try {

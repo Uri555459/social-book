@@ -1,11 +1,11 @@
 GET {{hostname}}/comments
 ###
 
-GET {{hostname}}/comments/6657025e57776e2ef8e742f8
+GET {{hostname}}/comments/665856319a9a4b889d0bb269
 ###
 
 
-POST {{hostname}}/comments/66581bde299a13710fbca376
+POST {{hostname}}/comments/665856219a9a4b889d0bb25b
 
 {
 	"text": "Create comments"
@@ -20,4 +20,4 @@ PUT {{hostname}}/comments/665818c6bbcbd7f5bc6b41d1
  
 ###
 
-DELETE {{hostname}}/comments/66581d19299a13710fbca390/66581bde299a13710fbca376
+DELETE {{hostname}}/comments/665856319a9a4b889d0bb260/665856219a9a4b889d0bb25b
